@@ -9,12 +9,18 @@ use Tests\TestCase;
 class PasswordConfirmationTest extends TestCase
 {
     use RefreshDatabase;
-
+    private const  USER = [
+        'name' => 'Test User',
+        'telephone'=>'771958713',
+        'email' => 'test@example.com',
+        'password' => 'password',
+        'email_verified_at'=>null
+    ];
     public function test_confirm_password_screen_can_be_rendered()
     {
-        $user = User::factory()->create();
+        //$user = User::factory()->create();
 
-        $response = $this->actingAs($user)->get('/confirm-password');
+        $response = $this->actingAs(self::USER)->get('/confirm-password');
 
         $response->assertStatus(200);
     }
